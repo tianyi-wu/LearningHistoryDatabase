@@ -1,0 +1,6 @@
+ul:nth-child(odd) {
+	list-style-type: disc;
+}
+ul:nth-child(even) {
+	list-style-type: circle;
+}

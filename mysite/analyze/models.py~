@@ -1,0 +1,39 @@
+# coding: UTF-8
+from django.db import models
+from account.models import UserProfile
+from history.models import History
+from lecture.models import Lecture,Course
+from decimal import *
+
+# Create your models here.
+class Score(models.Model):
+	user_profile = models.OneToOneField(UserProfile)
+	#user = models.OneToOneField(User)
+	a = models.DecimalField(default=0)
+	b = models.DecimalField(default=0)
+	c = models.DecimalField(default=0)
+	d = models.DecimalField(default=0)
+	e = models.DecimalField(default=0)
+	
+	def calc_score(self):
+		print "hoge"
+		hoge = "2" # 何とかしてログイン中のユーザ情報を手に入れる
+		user_profile = UserProfile.objects.get(user_id=hoge)
+		name = user_profile.user.username
+		user_histories = History.objects.filter(student__id = hoge)
+		a = Decimal(0)
+		b = Decimal(0)
+		c = Decimal(0)
+		d = Decimal(0)
+		e = Decimal(0)
+		for history in user_histories:
+			a += history.lecture.course.a
+			b += history.lecture.course.b
+			c += history.lecture.course.c
+			d += history.lecture.course.d
+			e += history.lecture.course.e
+		self.a = a
+		self.b = b
+		self.c = c
+		self.d = d
+		self.e = e

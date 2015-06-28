@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>History</h2>
+    <!--<a href="{% url 'history:create'  %}">create</a> -->
+
+	<div class="container">
+	<table class="table">
+		<thead>
+			<tr>
+				<!--<t1h>Student</th>-->
+				<th>Course</th>
+				<th>Lecture</th>
+				<th>Year</th>
+				<th>grade</th>
+				<th>Other</th>
+				<th>Update</th>
+				<th>Delete</th>
+			<tr>
+		</thead>
+		<tbody>
+	        {% for item in history_list %}
+			<tr>
+				<!--<th>{{ item.student }}</th>-->
+				<th>{{ item.lecture.course.course_name }}</th>
+				<th><a href="{% url 'history:detail' item.pk %}">{{ item.lecture }}</a></th>
+				<th>{{ item.year }}</th>
+				<th>{{ item.grade }}</th>
+				<th>{{ item.other }}</th>
+                <th><a href="{% url 'history:update' item.pk %}">update</a></th>
+                <th><a href="{% url 'history:delete' item.pk %}">delete</a></th>
+			</tr>
+	        {% endfor %}
+		</tbody>
+	</table>
+	
+<!--
+    <ul>
+        {% for item in history_list %}
+            <li><p><a href="{% url 'history:detail' item.pk %}">{{ item.student }},{{ item.lecture }},{{ item.year }},{{ item.grade }}</a></p>
+                <a href="{% url 'lecture:update' item.pk %}">update</a>
+                <a href="{% url 'history:delete' item.pk %}">delete</a>
+            </li>
+            
+        {% endfor %}
+    </ul>
+-->    
+	<div class="pagination">
+	    <span class="step-links">
+	        {% if page_obj.has_previous %}
+	            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+	        {% endif %}
+	
+	        <span class="current">
+	            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+	        </span>
+	
+	        {% if page_obj.has_next %}
+	            <a href="?page={{ page_obj.next_page_number }}">next</a>
+	        {% endif %}
+	    </span>
+	</div>
+
+	</div> <!-- container -->
+
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="lectureIndex.css" media="all">
+{% endblock %}
+
+{% block content %}
+    <h2>Lectures</h2>
+<!--
+    <a href="{% url 'lecture:create'  %}">create</a>
+-->
+    
+    <form action="{% url 'lecture:index' %}" method="GET">
+        <input type="text" name="name"></>
+        <input type="submit" value="Search"></>
+    </form>
+    
+<!--
+    <div>
+    <ul>
+        {% for item in lecture_list %}
+            <li><a href="{% url 'lecture:detail' item.lecture_id %}">{{ item.lecture_id}},{{ item.lecture_name  }},{{ item.department }}, {{ item.teacher}}</a>                <a href="{% url 'lecture:update' item.lecture_id %}">update</a>
+                <a href="{% url 'lecture:delete' item.lecture_id %}">delete</a>
+            </li>
+            
+        {% endfor %}
+    </ul>
+    </div>
+-->
+
+	<div class="container">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>LectureID</th>
+				<th>Course</th>
+				<th>Name</th>
+				<th>Department</th>
+				<th>Teacher</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for item in lecture_list %}
+			<tr>
+				<th>{{ item.lecture_id }}</th>
+				<th>{{ item.course.course_name }}</th>
+				<th><a href="{% url 'lecture:detail' item.lecture_id %}">{{ item.lecture_name  }}</a></th>
+				<th>{{ item.department }}</th>
+				<th>{{ item.teacher}}</th>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+    </div>
+	<div class="pagination">
+	    <span class="step-links">
+	        {% if page_obj.has_previous %}
+	            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+	        {% else %}
+				previous
+			{% endif %}
+	
+	        <span class="current">
+	            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+	        </span>
+	
+	        {% if page_obj.has_next %}
+	            <a href="?page={{ page_obj.next_page_number }}">next</a>
+			{% else %}
+				next
+	        {% endif %}
+	    </span>
+	</div>
+{% endblock %}

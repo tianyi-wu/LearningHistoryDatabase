@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>UserProfile</h2>
+    <ul>
+	{% comment %}
+		{% for name in history._meta.__dict__.items() %}
+            <li>{{ getattr(history, name, None) }}</li>
+        {% endfor %}
+	{% endcomment %}
+    </ul>
+	<div class="container">
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>{{user.userprofile.user}}</th>
+				<th>{{user.userprofile.todai_id}}</th>
+				<th>{{user.userprofile.student_id_master}}</th>
+				<th>{{user.userprofile.student_id_docter}}</th>
+				<th>{{user.userprofile.ifautumn}}</th>
+				<th>{{user.userprofile.travel_fee_id}}</th>
+				<th>{{user.userprofile.trend_id }}</th>
+				<th>{{user.userprofile.shorekin13}}</th>
+				<th>{{user.userprofile.shorekin14}}</th>
+				<th>{{user.userprofile.sex}}</th>
+				<th>{{user.userprofile.department}}</th>
+				<th>{{user.userprofile.grade}}</th>
+				<th>{{user.userprofile.nationality}}</th>
+				<th>{{user.userprofile.email}}</th>
+				<th>{{user.userprofile.advising_teacher_department}}</th>
+				<th>{{user.userprofile.advising_teacher_name}}</th>
+				<th>{{user.userprofile.advising_teacher_email}}</th>
+				<th>{{user.userprofile.sub_advising_teacher}}</th>
+				<th>{{user.userprofile.research_proposal}}</th>
+				<th>{{user.userprofile.other }}</th>
+				<th>{{user.userprofile.ifsummercamp}}</th>
+			</tr>
+		</tbody>
+	</table>
+	<p><a href="{% url 'account:update' %}">Update</a></p>
+    <p><a href="{% url 'history:index' %}">BACK</a></p>
+	</div> <!-- container -->
+
+{% endblock %}

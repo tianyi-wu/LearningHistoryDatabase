@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block script %}
+<script src="/static/analyze/flotr2.min.js"> </script>
+<style type="text/css">
+body {
+        margin: 0px;
+        padding: 0px;
+}
+#graph {
+        width : 600px;
+        height: 400px;
+        margin: 20px auto;
+}
+.graph-title {
+        font-size:16px;
+        font-weight:bold;
+        text-align:center;
+        margin:50px 0 0;
+}
+</style>
+<script type="text/javascript">
+function test() {
+    var g = document.getElementById("graph");
+    basic_radar(g);
+}
+function basic_radar(container) {
+    var s1 = {
+        label: "hoge",
+        data: [
+            [0, 3],
+            [1, 2],
+            [2, 4],
+            [3, 1],
+            [4, 5],
+            [5, 2]
+        ]
+    },
+        graph, ticks;
+    ticks = [
+        [0, "aaaタイプ"],
+        [1, "bbbタイプ"],
+        [2, "cccタイプ"],
+        [3, "dddタイプ"],
+        [4, "eeeタイプ"],
+        [5, "fffタイプ"]
+    ];
+    graph = Flotr.draw(container, [s1], {
+        radar: {
+            show: true
+        },
+        grid: {
+            circular: true,
+            minorHorizontalLines: true
+        },
+        yaxis: {
+            min: 0,
+            max: 5,
+            minorTickFreq: 1
+        },
+        xaxis: {
+            ticks: ticks
+        }
+    });
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<p> this is a test </p>
+<p class="graph-title">あなたの体の傾向</p>
+<div id="graph"></div>
+<script type="text/javascript">
+basic_radar(document.getElementById("graph"));
+ </script> 
+ <a>
+    Flotr2: <a href="https://github.com/HumbleSoftware/Flotr2">https://github.com/HumbleSoftware/Flotr2</a><br>
+    必要ならばラベルの表示も可能。<br>
+ </a>
+ <input type="button" value="test" onclick="test()">
+<br>
+
+{% endblock %}

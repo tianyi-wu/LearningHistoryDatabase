@@ -1,0 +1,71 @@
+<<<<<<< HEAD
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>History</h2>
+    <ul>
+	{% comment %}
+		{% for name in history._meta.__dict__.items() %}
+            <li>{{ getattr(history, name, None) }}</li>
+        {% endfor %}
+	{% endcomment %}
+    </ul>
+	<div class="container">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Student</th>
+				<th>Lecture</th>
+				<th>Year</th>
+				<th>grade</th>
+			<tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th>{{ history.student }}</th>
+				<th>{{ history.lecture}}</th>
+				<th>{{ history.year}}</th>
+				<th>{{ history.grade }}</th>
+			</tr>
+		</tbody>
+	</table>
+    <p><a href="{% url 'history:index' %}">BACK</a></p>
+	</div> <!-- container -->
+
+{% endblock %}
+=======
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>History</h2>
+    <ul>
+	{% comment %}
+		{% for name in history._meta.__dict__.items() %}
+            <li>{{ getattr(history, name, None) }}</li>
+        {% endfor %}
+	{% endcomment %}
+    </ul>
+	<div class="container">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Student</th>
+				<th>Lecture</th>
+				<th>Year</th>
+				<th>grade</th>
+			<tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th>{{ history.student }}</th>
+				<th>{{ history.lecture}}</th>
+				<th>{{ history.year}}</th>
+				<th>{{ history.grade }}</th>
+			</tr>
+		</tbody>
+	</table>
+    <p><a href="{% url 'history:index' %}">BACK</a></p>
+	</div> <!-- container -->
+
+{% endblock %}
+>>>>>>> bitbucket/master

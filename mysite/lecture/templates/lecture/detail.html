@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Lectures</h2>
+    <ul>
+        <li>{{ lecture.gsdm_code }},
+            {{ lecture.category }},
+            {{ lecture.lecture_id }},
+            {{ lecture.lecture_name }},
+            {{ lecture.term }},
+            {{ lecture.credit }},
+            {{ lecture.department }},
+            {{ lecture.specialization }},
+            {{ lecture.language }},
+            {{ lecture.teacher }},
+            {{ lecture.other }},
+            {{ lecture.course }}
+        </li>
+    </ul>
+        <form action="{% url 'history:create' %}" method="GET">{% csrf_token %}
+            <input type="hidden" name="id" value = "{{ lecture.lecture_id }}">
+            <input type="submit" value="Create a history" >
+        </form>
+    <p><a href="{% url 'lecture:index' %}">BACK</a></p>
+{% endblock %}
